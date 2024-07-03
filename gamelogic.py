@@ -64,7 +64,7 @@ class GameLogic:
 
         
         # <-- TODO: Complete the following
-        """
+        
         #check the conditions for the following and apply appropriate actions:
         if self.ball_falls_left():
             self.paddle_right.score += 1
@@ -75,9 +75,5 @@ class GameLogic:
             self.paddle_left.score += 1
             self.reset()
 
-        IF ball hits wall
-            - Y-axis velocity (i.e., self.ball.velocity[1]) reverses
-        IF ball hits paddle
-            - X-axis velocity reverses
-        """
+    
 
