@@ -3,7 +3,7 @@ from gameobject import window_width as WIDTH
 
 
 class GameLogic:
-    
+    """
     Game logic of Pong game
     Attributes:
         - ball: A Ball object
@@ -16,7 +16,7 @@ class GameLogic:
         - ball_falls_right(): returns True if ball exceeds the right side of the screen
         - ball_hits_wall(): returns True if ball hits the top or bottom wall
         - ball_hits_paddle(): returns True if ball hits any of the paddles
-    
+    """
     def __init__(self, ball, paddle_left, paddle_right):
         self.ball = ball
         self.paddle_left = paddle_left
@@ -52,7 +52,7 @@ class GameLogic:
         self.paddle_left.update()
         self.paddle_right.update()
         # <-- TODO: Complete the following
-        
+        """
         #check the conditions for the following and apply appropriate actions:
         if self.ball_falls_left():
             self.paddle_right.score += 1
