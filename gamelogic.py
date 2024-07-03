@@ -28,12 +28,19 @@ class GameLogic:
         self.paddle_left.reset()
         self.paddle_right.reset()
 
-    def ball_falls_left(self):
-        # <-- TODO: complete this function. check if self.ball.position[0] goes below 0
-        return False
+
+    def ball_falls_left(self): # <-- TODO: complete this function. check if self.ball.position[0] goes below 0
+        if self.ball.position[0] <= 0:
+            return True
+        else:
+            return False
 
     def ball_falls_right(self): # <-- TODO: complete this function. check if self.ball.position[0] exceeds WIDTH
-        return False
+        if self.ball.position[0] >= WIDTH:
+            return True
+        else:
+            return False
+
 
     def ball_hits_wall(self):
         return self.ball.position[1] < 0 or self.ball.position[1] > HEIGHT
@@ -47,24 +54,27 @@ class GameLogic:
         self.paddle_left.update()
         self.paddle_right.update()
 
-         if self.ball_hits_wall():
+        if self.ball_hits_wall():
             self.ball.velocity[1] = -self.ball.velocity[1]
 
-         if self.ball_hits_paddle():
+        if self.ball_hits_paddle():
             self.ball.velocity[0] = -self.ball.velocity[0]
 
 
 
         
         # <-- TODO: Complete the following
-        """ 
-        check the conditions for the following and apply appropriate actions:
-        IF ball falls left
-            - score of the right paddle goes up
-            - resets game
-        IF ball falls right
-            - score of the left paddle goes up
-            - resets game
+        """
+        #check the conditions for the following and apply appropriate actions:
+        if self.ball_falls_left():
+            self.paddle_right.score += 1
+            self.reset()
+
+        # Check if the ball falls right
+        elif self.ball_falls_right():
+            self.paddle_left.score += 1
+            self.reset()
+
         IF ball hits wall
             - Y-axis velocity (i.e., self.ball.velocity[1]) reverses
         IF ball hits paddle
