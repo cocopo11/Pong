@@ -37,8 +37,7 @@ class GameLogic:
 
     def ball_hits_wall(self):
         return self.ball.position[1] < 0 or self.ball.position[1] > HEIGHT
-        # <-- TODO: complete this function. check if self.ball.position[1] goes beyond 0 or HEIGHT
-        return False
+        # <-- TODO: complete this function. check if self.ball.position[1] goes beyond 0 or HEIGHT        
 
     def ball_hits_paddle(self):
         return self.ball.is_collision(self.paddle_left) or self.ball.is_collision(self.paddle_right)
@@ -48,13 +47,12 @@ class GameLogic:
         self.paddle_left.update()
         self.paddle_right.update()
 
-    
-
-        if self.ball_hits_wall():
+         if self.ball_hits_wall():
             self.ball.velocity[1] = -self.ball.velocity[1]
 
-        if self.ball_hits_paddle():
+         if self.ball_hits_paddle():
             self.ball.velocity[0] = -self.ball.velocity[0]
+
 
 
         
