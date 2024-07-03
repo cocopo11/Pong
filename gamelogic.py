@@ -3,7 +3,7 @@ from gameobject import window_width as WIDTH
 
 
 class GameLogic:
-    """
+    
     Game logic of Pong game
     Attributes:
         - ball: A Ball object
@@ -16,7 +16,7 @@ class GameLogic:
         - ball_falls_right(): returns True if ball exceeds the right side of the screen
         - ball_hits_wall(): returns True if ball hits the top or bottom wall
         - ball_hits_paddle(): returns True if ball hits any of the paddles
-    """
+    
     def __init__(self, ball, paddle_left, paddle_right):
         self.ball = ball
         self.paddle_left = paddle_left
@@ -29,10 +29,17 @@ class GameLogic:
         self.paddle_right.reset()
 
     def ball_falls_left(self): # <-- TODO: complete this function. check if self.ball.position[0] goes below 0
-        return False
+        if self.ball.position[0] <= 0:
+            return True
+        else:
+            return False
 
     def ball_falls_right(self): # <-- TODO: complete this function. check if self.ball.position[0] exceeds WIDTH
-        return False
+        if self.ball.position[0] >= WIDTH:
+            return True
+        else:
+            return False
+
 
     def ball_hits_wall(self): # <-- TODO: complete this function. check if self.ball.position[1] goes beyond 0 or HEIGHT
         return False
@@ -45,14 +52,17 @@ class GameLogic:
         self.paddle_left.update()
         self.paddle_right.update()
         # <-- TODO: Complete the following
-        """ 
-        check the conditions for the following and apply appropriate actions:
-        IF ball falls left
-            - score of the right paddle goes up
-            - resets game
-        IF ball falls right
-            - score of the left paddle goes up
-            - resets game
+        
+        #check the conditions for the following and apply appropriate actions:
+        if self.ball_falls_left():
+            self.paddle_right.score += 1
+            self.reset()
+
+        # Check if the ball falls right
+        elif self.ball_falls_right():
+            self.paddle_left.score += 1
+            self.reset()
+
         IF ball hits wall
             - Y-axis velocity (i.e., self.ball.velocity[1]) reverses
         IF ball hits paddle
